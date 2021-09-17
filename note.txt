@@ -1,0 +1,11 @@
+- Install thư viện vào devDepedencies: npm install -D <lib-name>
+
+
+- Lệnh tạo component:
+  + ng g component component-name
+  + ng g c component-name
+* Lưu ý khi sử dụng lệnh tạo component phải cd đường dẫn terminal vào thư mục chưa module để tạo component
+
+- Lệnh tạo module:
+  + ng g module module-name
+  + ng g m module-name

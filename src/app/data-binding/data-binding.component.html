@@ -1,0 +1,48 @@
+<h3>Interpolation</h3>
+
+<p>Username: {{ username }}</p>
+
+<p>Student: {{ student.name }} - {{ student.email }}</p>
+
+<h3>Property binding</h3>
+
+<input type="text" [value]="username" />
+<button [disabled]="isDisabled">Submit</button>
+
+<h3>Event binding</h3>
+
+<!-- Cú pháp jsx -->
+<!-- <button onClick={showAlert}>Alert</button> -->
+<!-- Cú pháp html thuần -->
+<!-- <button onclick="showAlert()">Alert</button> -->
+<!-- Cú pháp của angular -->
+<button (click)="showAlert()">Alert</button>
+
+<h3>Kết hợp Property binding & Event binding</h3>
+
+<!-- <input value={email} onChange={(evt) => setEmail(evt.target.value)} /> -->
+
+<!-- Để lấy được đối tượng event bắt buộc phải viết đúng cú pháp là $event -->
+<p>{{ email }}</p>
+<input type="email" [value]="email" (input)="changeEmail($event)" />
+
+<!-- Twoway-binding -->
+
+<p>{{ address }}</p>
+
+<!--
+  ngModel là 1 thành phần của FormsModule
+  Ta cần import FormsModule vào module quản lý component mà t muốn sử dụng ngModel
+-->
+
+<!-- <input type="email" [value]="address" (input)="changeAddress($event)" /> -->
+<!-- Tương dương -->
+<input type="text" [(ngModel)]="address" />
+
+
+
+
+
+
+
+

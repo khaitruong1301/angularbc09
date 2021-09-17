@@ -1,0 +1,22 @@
+<div class="container">
+  <h3>Register Form</h3>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" id="email" class="form-control" [(ngModel)]="email" />
+  </div>
+
+  <div class="form-group">
+    <label for="fullName">Fullname</label>
+    <!-- template variable -->
+    <!-- khi đặt tên biến không được trùng với bất kì tên biến nào đã có trong class -->
+    <input type="text" class="form-control" id="fullName" #fullNameRef />
+  </div>
+
+  <button class="btn btn-success" (click)="onSubmit(fullNameRef)">
+    Submit
+  </button>
+
+  <p>Email: {{ email }}</p>
+  <p>Fullname: {{ fullName }}</p>
+</div>

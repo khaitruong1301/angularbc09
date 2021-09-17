@@ -1,0 +1,120 @@
+<h3>NgIf</h3>
+
+<!-- Ta muốn: khi isVisible bằng true thì mới hiện thẻ p ra giao diện => sử dụng ngIf directive -->
+<p *ngIf="isVisible">Cybersoft</p>
+<button (click)="isVisible = !isVisible">Toggle Visible</button>
+
+<!-- View khi chưa login -->
+<!-- <div *ngIf="!isLoggedIn">
+  <h4>Please login</h4>
+  <button (click)="isLoggedIn = true">Login</button>
+</div> -->
+
+<!-- View khi đã login -->
+<div *ngIf="isLoggedIn; else loginTemplate">
+  <h4>Welcome back</h4>
+  <button (click)="isLoggedIn = false">Logout</button>
+</div>
+
+<!--
+  Mặc định những gì nằm bên trong ng-template sẽ không được hiển thị ra giao diện.
+  Để giao diện bên trong ng-template có thể hiển thị ra, ta cần khai báo cho ng-template 1 template variable và gọi tới nó
+-->
+<ng-template #loginTemplate>
+  <div>
+    <h4>Please login</h4>
+    <button (click)="isLoggedIn = true">Login</button>
+  </div>
+</ng-template>
+
+<h3>NgSwitch</h3>
+
+<!-- Ta muốn: Chỉ hiển thị ra 1 thẻ p duy nhất tương ứng với giá trị của biến color -->
+<div [ngSwitch]="color">
+  <p *ngSwitchCase="'primary'" class="bg-primary">Primary</p>
+  <p *ngSwitchCase="'secondary'" class="bg-secondary">Secondary</p>
+  <p *ngSwitchCase="'success'" class="bg-success">Success</p>
+  <p *ngSwitchCase="'danger'" class="bg-danger">Danger</p>
+  <p *ngSwitchCase="'warning'" class="bg-warning">Warning</p>
+  <p *ngSwitchDefault>Default</p>
+</div>
+
+<select [(ngModel)]="color">
+  <option value="">---</option>
+  <option value="primary">Primary</option>
+  <option value="secondary">Secondary</option>
+  <option value="success">Success</option>
+  <option value="danger">Danger</option>
+  <option value="warning">Warning</option>
+</select>
+
+<!-- NgFor -->
+<table class="table">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>ID</th>
+      <th>Fullname</th>
+      <th>Email</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr *ngFor="let student of students; index as i; count as total"> -->
+    <!--
+      Ngoài index angular còn cung cấp 1 số variable khác ví dụ:
+      - count: lấy ra tổng số phần tử trong danh sách
+      - fist: trả về true nếu là phần tử đầu tiên
+      - last: trả về true nếu là phần tử cuối
+      - even: trả về true nếu là số chẵn
+      - odd: trả về true nếu là số lẽ
+    -->
+    <tr *ngFor="let student of students; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ student.id }}</td>
+      <td>{{ student.fullName }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.gender }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Không thể sử dụng nhiều structural directives trên cùng 1 thẻ -->
+<!-- thẻ ng-container sẽ không render ra giao diện -->
+<ng-container *ngFor="let student of students">
+  <!-- Chỉ render ra những học sinh nữ -->
+  <p *ngIf="student.gender === 'female'">
+    Fullname: {{ student.fullName }} - Email: {{ student.email }}
+  </p>
+</ng-container>
+
+
+<!-- Kết hợp ng-container và ng-template với directive ngTemplateOutlet để tái sử dụng giao diện trong component -->
+
+
+<!-- Viết đoạn giao diện muốn tái sử dụng trong ng-template -->
+<ng-template #alertTemplate>
+  <div class="alert alert-danger" role="alert">
+    <strong>Something went wrong</strong>
+  </div>
+</ng-template>
+
+<!-- Thay vì phải viết lại đoạn giao diện nhiều lần ta sử dụng ng-container và  directive ngTemplateOutlet-->
+
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+<ng-container *ngTemplateOutlet="alertTemplate"></ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
